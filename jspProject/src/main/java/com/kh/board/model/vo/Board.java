@@ -5,7 +5,7 @@ public class Board {
 	private int boardType;
 	private String category;	// 작성기능 사용시 => 카테고리 번호 | 조회 카테고리명
 	private String boardTitle;
-	private String board_content;
+	private String boardContent;
 	private String boardWriter;	// 작성기능시 회원번호 | 조회기능 회원아이디
 	private int count;
 	private String createDate;
@@ -15,14 +15,35 @@ public class Board {
 		super();
 	}
 
-	public Board(int boardNo, int boardType, String category, String boardTitle, String board_content,
+	public Board(int boardNo, String category, String boardTitle, String boardWriter, int count, String createDate) {
+		super();
+		this.boardNo = boardNo;
+		this.category = category;
+		this.boardTitle = boardTitle;
+		this.boardWriter = boardWriter;
+		this.count = count;
+		this.createDate = createDate;
+	}
+
+	public Board(int boardNo, String category, String boardTitle, String boardContent, String boardWriter,
+			String createDate) {
+		super();
+		this.boardNo = boardNo;
+		this.category = category;
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+		this.boardWriter = boardWriter;
+		this.createDate = createDate;
+	}
+
+	public Board(int boardNo, int boardType, String category, String boardTitle, String boardContent,
 			String boardWriter, int count, String createDate, String status) {
 		super();
 		this.boardNo = boardNo;
 		this.boardType = boardType;
 		this.category = category;
 		this.boardTitle = boardTitle;
-		this.board_content = board_content;
+		this.boardContent = boardContent;
 		this.boardWriter = boardWriter;
 		this.count = count;
 		this.createDate = createDate;
@@ -61,12 +82,12 @@ public class Board {
 		this.boardTitle = boardTitle;
 	}
 
-	public String getBoard_content() {
-		return board_content;
+	public String getBoardContent() {
+		return boardContent;
 	}
 
-	public void setBoard_content(String board_content) {
-		this.board_content = board_content;
+	public void setBoardContent(String boardContent) {
+		this.boardContent = boardContent;
 	}
 
 	public String getBoardWriter() {
@@ -104,7 +125,7 @@ public class Board {
 	@Override
 	public String toString() {
 		return "Board [boardNo=" + boardNo + ", boardType=" + boardType + ", category=" + category + ", boardTitle="
-				+ boardTitle + ", board_content=" + board_content + ", boardWriter=" + boardWriter + ", count=" + count
+				+ boardTitle + ", boardContent=" + boardContent + ", boardWriter=" + boardWriter + ", count=" + count
 				+ ", createDate=" + createDate + ", status=" + status + "]";
 	}
 }
