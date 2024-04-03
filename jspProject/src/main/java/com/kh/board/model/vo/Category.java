@@ -7,7 +7,7 @@ public class Category {
 	public Category() {
 		super();
 	}
-
+	
 	public Category(int categoryNo, String categoryName) {
 		super();
 		this.categoryNo = categoryNo;
@@ -34,4 +34,5 @@ public class Category {
 	public String toString() {
 		return "Category [categoryNo=" + categoryNo + ", categoryName=" + categoryName + "]";
 	}
+	
 }

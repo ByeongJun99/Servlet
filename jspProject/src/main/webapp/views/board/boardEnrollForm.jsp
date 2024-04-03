@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.board.model.vo.Category" %>
-    
+
 <%
 	ArrayList<Category> list = (ArrayList<Category>)request.getAttribute("categorys");
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,16 +36,16 @@
         <br>
 
         <form id="enroll-form" action="<%=contextPath %>/insert.bo" method="post" enctype="multipart/form-data">
-        	<input type="hidden" name="userNo" value="<%=loginUser.getUserNo() %>">
+            <input type="hidden" name="userNo" value="<%=loginUser.getUserNo()%>">
             <table>
                 <tr>
                     <th width="70">카테고리</th>
                     <td width="500">
                         <select name="category">
-                        	<!-- category 테이블로부터 조회해오기 -->
+                        	<!-- category테이블로부터 조회해오기 -->
                         	<% for(Category c : list) { %>
                             	<option value="<%=c.getCategoryNo()%>"><%=c.getCategoryName() %></option>
-                            <% } %>
+                            <%} %>
                         </select>
                     </td>
                 </tr>
