@@ -80,4 +80,12 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+
+	public int idCheck(String checkId) {
+		Connection conn = getConnection();
+		int count = new MemberDao().isCheck(conn, checkId);
+		
+		close(conn);
+		return count;
+	}
 }
