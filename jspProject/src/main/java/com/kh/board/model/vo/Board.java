@@ -15,7 +15,8 @@ public class Board {
 	public Board() {
 		super();
 	}
-	
+
+
 	public Board(int boardNo, String category, String boardTitle, String boardContent, String boardWriter,
 			String createDate) {
 		super();
@@ -38,6 +39,20 @@ public class Board {
 	}
 
 	public Board(int boardNo, int boardType, String category, String boardTitle, String boardContent,
+			String boardWriter, int count, String createDate, String status) {
+		super();
+		this.boardNo = boardNo;
+		this.boardType = boardType;
+		this.category = category;
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+		this.boardWriter = boardWriter;
+		this.count = count;
+		this.createDate = createDate;
+		this.status = status;
+	}
+
+	public Board(int boardNo, int boardType, String category, String boardTitle, String boardContent,
 			String boardWriter, int count, String createDate, String status, String titleImg) {
 		super();
 		this.boardNo = boardNo;
@@ -51,6 +66,7 @@ public class Board {
 		this.status = status;
 		this.titleImg = titleImg;
 	}
+
 
 	public int getBoardNo() {
 		return boardNo;
@@ -124,13 +140,16 @@ public class Board {
 		this.status = status;
 	}
 
+	
 	public String getTitleImg() {
 		return titleImg;
 	}
 
+
 	public void setTitleImg(String titleImg) {
 		this.titleImg = titleImg;
 	}
+
 
 	@Override
 	public String toString() {
@@ -138,4 +157,5 @@ public class Board {
 				+ boardTitle + ", boardContent=" + boardContent + ", boardWriter=" + boardWriter + ", count=" + count
 				+ ", createDate=" + createDate + ", status=" + status + ", titleImg=" + titleImg + "]";
 	}
+	
 }

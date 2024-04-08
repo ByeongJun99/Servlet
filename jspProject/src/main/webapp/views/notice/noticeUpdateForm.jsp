@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.notice.model.vo.Notice" %>
-<%
+<% 
     Notice n = (Notice)request.getAttribute("notice");
 %>
 <!DOCTYPE html>
@@ -37,7 +37,7 @@
         <br>
 
         <form action="<%=contextPath %>/update.no" id="update-form" method="post">
-        	<input type="hidden" name="num" value="<%=n.getNoticeNo()%>">
+            <input type="hidden" name="num" value="<%=n.getNoticeNo()%>">
             <table>
                 <tr>
                     <th width="50">제목</th>

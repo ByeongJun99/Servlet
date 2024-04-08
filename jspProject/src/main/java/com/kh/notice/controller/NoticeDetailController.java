@@ -30,6 +30,7 @@ public class NoticeDetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
 		int noticeNo = Integer.parseInt(request.getParameter("num"));
 		
 		//조회수 1증가  + notice조회

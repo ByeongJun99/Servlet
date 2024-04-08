@@ -20,10 +20,12 @@
         margin: auto;
         margin-top: 50px;
     }
-    .detail-area td .detail-area th{
+    
+    .detail-area td, .detail-area th{
     	border: 1px solid white;
     	text-align: center;
     }
+
 </style>
 </head>
 <body>
@@ -32,6 +34,7 @@
         <br>
         <h2 align="center">사진게시판 상세보기</h2>
         <br>
+        
         <table class="detail-area" align="center">
             <tr>
                 <th width="100">제목</th>
@@ -52,18 +55,18 @@
             <tr>
                 <th>대표이미지</th>
                 <td colspan="3">
-                    <img src="<%=contextPath%>/<%=list.get(0).getFilePath() + list.get(0).getChangeName()%>" width="500" height="300">
+                    <img src="<%=contextPath %>/<%=list.get(0).getFilePath() + list.get(0).getChangeName()%>" width="500" height="300">
                 </td>
             </tr>
             <tr>
                 <th>상세이미지</th>
-                <td colspan="3">
-                	<div>
-                		<% for(int i=1; i<list.size(); i++) { %>
-                			<img src="<%=contextPath%>/<%=list.get(i).getFilePath() + list.get(i).getChangeName()%>" width="200" height="150">
-                		<% } %>
-                	</div>
-                </td>
+            	<td colspan="3">
+            		<div>
+            			<%for(int i = 1; i < list.size(); i++){ %>
+            				<img src="<%=contextPath %>/<%=list.get(i).getFilePath() + list.get(i).getChangeName()%>" width="200" height="150">
+            			<%} %>
+            		</div>
+            	</td>
             </tr>
         </table>
 
@@ -72,6 +75,7 @@
         <div align="center">
             <a href="<%=contextPath%>/list.th" class="btn btn-sm btn-secondary">목록가기</a>
         </div>
+      
     </div>
 </body>
 </html>

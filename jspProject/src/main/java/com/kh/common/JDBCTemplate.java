@@ -25,7 +25,7 @@ public class JDBCTemplate {
 			prop.load(new FileInputStream(filePath));
 			
 			//jdbc driver등록
-//			System.out.println(prop.getProperty("driver"));
+			System.out.println(prop.getProperty("driver"));
 			Class.forName(prop.getProperty("driver"));
 			
 			//접속하고자하는 db의 url, 계정명, 비밀번호 제시해서 Connection객체 생성

@@ -19,7 +19,6 @@
 	     AND USER_PWD = ?
 	     AND STATUS = 'Y'
 	</entry>
-	
 	<entry key="insertMember">
 		INSERT INTO MEMBER
 		(
@@ -44,7 +43,6 @@
 			?
 		)
 	</entry>
-	
 	<entry key="updateMember">
 		UPDATE MEMBER
 		SET USER_NAME = ?
@@ -55,7 +53,6 @@
 		  , MODIFY_DATE = SYSDATE
 		WHERE USER_ID = ?
 	</entry>
-	
 	<entry key="selectMember">
 		SELECT
 			USER_NO,
@@ -73,7 +70,6 @@
 	   WHERE USER_ID = ?
 	     AND STATUS = 'Y'
 	</entry>
-	
 	<entry key="updatePwdMember">
 		UPDATE MEMBER
 		SET USER_PWD = ?
@@ -81,16 +77,16 @@
 		WHERE USER_ID = ?
 		  AND USER_PWD = ?
 	</entry>
-	
 	<entry key="deleteMember">
 		UPDATE MEMBER
 		SET STATUS = 'N'
+		  , MODIFY_DATE = SYSDATE
 		WHERE USER_ID = ?
-			AND USER_PWD = ?
+		  AND USER_PWD = ?
 	</entry>
-	<entry key="inCheck">
+	<entry key = "idCheck">
 		SELECT COUNT(*) "COUNT"
-		FROM MEMBER
-		WHERE USER_ID = ?
+		  FROM MEMBER
+		 WHERE USER_ID = ?  
 	</entry>
 </properties>

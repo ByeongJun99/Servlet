@@ -24,6 +24,8 @@ public class Notice {
 		this.createDate = createDate;
 	}
 
+
+
 	public Notice(int noticeNo, String noticeTitle, String noticeContent, String noticeWriter, Date createDate) {
 		super();
 		this.noticeNo = noticeNo;

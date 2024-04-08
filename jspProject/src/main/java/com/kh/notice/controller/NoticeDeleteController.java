@@ -29,19 +29,21 @@ public class NoticeDeleteController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 데이터 가져오기
+		//데이터가져오기
 		int noticeNo = Integer.parseInt(request.getParameter("num"));
 		
-		// delete문 실행하기 service -> deleteNotice();
+		//delete문 실행하기 service -> deleteNotice();
 		int result = new NoticeService().deleteNotice(noticeNo);
 		
-		if (result > 0) {	// 성공시 -> /kh/list.no
+		//성공시 -> /kh/list.no
+		if (result > 0) {
 			request.getSession().setAttribute("alertMsg", "성공적으로 공지사항이 삭제되었습니다.");
 			response.sendRedirect(request.getContextPath() + "/list.no");
-		} else {	// 실패시 -> 에러페이지
+		} else { //실패시 -> 에러페이지
 			request.setAttribute("errorMsg", "공지사항 삭제 실패");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
+	
 	}
 
 	/**

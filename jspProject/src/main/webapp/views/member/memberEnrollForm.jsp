@@ -88,14 +88,14 @@
             <br><br>
 
             <div align="center">
-                <button type="submit" onclick="return checkPwd();">회원가입</button>
+                <button type="submit" onclick="return checkPwd();" disabled>회원가입</button>
                 <button type="reset">초기화</button>
             </div>
         </form>
     </div>
 
     <script>
-        function checkPwd() {
+        function checkPwd(){
             const pwd = document.querySelector("#enroll-form input[name=userPwd]").value;
             const pwdCheck = document.querySelector("#enroll-form input[name=userPwdCheck]").value;
 
@@ -105,39 +105,62 @@
             }
         }
         
-        function idCheck() {
-        	// 중복확인 버튼 클릭시 사용자가 입력한 아이디값을 서버에 보내서 조회요청(존재하는 아이디인가?) => 응답받기
-            // 1) 사용불가 => alert 메세지 출력(사용할 수 없는 아이디입니다.), 다시입력
-            // 2) 사용가능 => 진짜 사용할 것인지?
-            //                          ok => 더이상 아이디 수정 못하게끔, 회원가입 버튼 활성
-            //                          no => 다시 입력하도록 유도
-            const idInput = document.querySelector("#enroll-form input[name=userId]");
-            console.log(idInput);
+        function idCheck(){
+        	//중복확인 버튼 클릭시 사용자가 입력한 아이디값을 서버에 보내서 조회요청(존재하는 아이디인가?) => 응답받기
+            //1) 사용불가야 => alert메세지 출력(사용할 수 없는 아이디입니다.), 다시입력
+            //2) 사용가능이야 => 진짜 사용할것인지?
+            //                              ok => 더이상 아이디 수정 못하게끔, 회원가입 버튼 활성
+            //                              no => 다시입력하도록 유도
 
-            // idInput.value값을 서버에 보내야한다. ajax사용
+            const idInput = document.querySelector("#enroll-form input[name=userId]");
+            console.log(idInput.value)
+
+            //idInput.value값을 서버에 보내야한다. ajax사용
+            
+            // $.ajax()
             /**
              * $.ajax({
              *      type : 전송타입 GET | POST,
-             *      url : 어디로 요청을 보낼지
+             *      url : 어디로 요청을 보낼지 
              *      data : {key : value} -> 어떤데이터를 포함해서 보낼지
              *      success : function(){} -> 성공시 실행해줄 함수
              *      error : function(){} -> 실패시 실행해줄 함수
              * })
-             **/
+             * 
+             * */
+             
+             console.log("ajax 출발")
+
+    
             $.ajax({
                 type : "GET",
-                url : "idCheck.me",
-                data : {
+                url: "idCheck.me",
+                data: {
                     checkId : idInput.value
                 },
-                success : function(res) {
-                    console.log("ajax 응답도착")
-                    console.log("성공 : ", res)
+                success: function(result){
+                    if(result === "NNNNY") {
+                        if(confirm("사용가능한 아이디입니다. 사용하시겠습니까?")){
+                            //더이상 아이디 수정 못하게끔, 회원가입 버튼 활성
+                            idInput.setAttribute("readonly", true);
+
+                            const submitBtn = document.querySelector("#enroll-form button[type=submit]");
+                            submitBtn.removeAttribute("disabled");
+                        } else{
+                            //아니라고 한 경우 아이디입력창 포커싱
+                            idInput.focus();
+                        }
+                    } else {
+                        alert("사용불가능한 아이디입니다.");
+                        idInput.focus();
+                    }
                 },
-                error : function(err){
+                error: function(err){
                     console.log("실패 : ", err)
                 }
             })
+            
+
             console.log("ajax 이후코드")
         }
     </script>

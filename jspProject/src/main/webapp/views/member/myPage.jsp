@@ -101,7 +101,9 @@
                 <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update-pwd-modal">
 				  비밀번호변경
 				</button>
-                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete-modal">회원탈퇴</button>
+                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete-modal">
+                	회원탈퇴
+                </button>
             </div>
         </form>
     </div>
@@ -117,7 +119,7 @@
             }
         }
     </script>
-    
+	
 	<!-- 비밀번호 변경 modal-->
 	<div class="modal" id="update-pwd-modal">
 	  <div class="modal-dialog">
@@ -169,6 +171,7 @@
             </script>
 	      </div>
 	
+	     
 	    </div>
 	  </div>
 	</div>
@@ -186,7 +189,7 @@
 	
 	      <!-- Modal body -->
 	      <div class="modal-body" align="center">
-            <form action="<%=contextPath%>/delete.me" method="POST">
+	     	<form action="<%=contextPath%>/delete.me" method="POST">
                 <b>탈퇴 후 복구가 불가능합니다.<br>
                 정말로 탈퇴하시겠습니까?</b>
                 <br><br>
@@ -194,9 +197,11 @@
                 비밀번호 : <input type="password" name="userPwd" required>
                 <br><br>
                 <button type="submit" class="btn btn-sm btn-danger">탈퇴하기</button>
+
             </form>
 	      </div>
 	
+	     
 	    </div>
 	  </div>
 	</div>

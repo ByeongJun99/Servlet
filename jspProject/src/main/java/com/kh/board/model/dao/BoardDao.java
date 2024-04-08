@@ -14,6 +14,7 @@ import java.util.Properties;
 import com.kh.board.model.vo.Attachment;
 import com.kh.board.model.vo.Board;
 import com.kh.board.model.vo.Category;
+import com.kh.board.model.vo.Reply;
 import com.kh.common.vo.PageInfo;
 
 public class BoardDao {
@@ -57,7 +58,7 @@ public class BoardDao {
 	}
 	
 	public ArrayList<Board> selectList(Connection conn, PageInfo pi){
-		//select => ResultSet(여러행) => ArrayList<Board>
+		//slelect => ResultSet(여러행) => ArrayList<Board>
 		
 		ArrayList<Board> list = new ArrayList<>();
 		
@@ -346,7 +347,7 @@ public class BoardDao {
 		
 		return result;
 	}
-
+	
 	public int insertThumbnailBoard(Connection conn, Board b) {
 		//insert -> 처리된 행 수 -> 트랜잭션
 		
@@ -371,17 +372,17 @@ public class BoardDao {
 		
 		return result;
 	}
-
+	
 	public int insertAttachmentList(Connection conn, ArrayList<Attachment> list) {
 		//insert -> 처리된 행 수 -> 트랜잭션
 		
-		int result = 0;
+		int result = 1;
 		
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertAttachmentList");
 		
 		try {
-			for(Attachment at : list) {
+			for (Attachment at : list) {
 				pstmt = conn.prepareStatement(sql);//미완성(4)
 				
 				pstmt.setString(1, at.getOriginName());
@@ -399,9 +400,9 @@ public class BoardDao {
 		
 		return result;
 	}
-
-	public ArrayList<Board> selectThumbnailList(Connection conn) {
-		// select => ResultSet(여러행) => ArrayList<Board>
+	
+	public ArrayList<Board> selectThumbnailList(Connection conn){
+		//select => ResultSet(여러행) => ArrayList<Board>
 		ArrayList<Board> list = new ArrayList<>();
 		
 		PreparedStatement pstmt = null;
@@ -430,9 +431,9 @@ public class BoardDao {
 		
 		return list;
 	}
-
-	public ArrayList<Attachment> selectAttachmentList(Connection conn, int boardNo) {
-		// select -> ResultSet(여러행) -> ArrayList<Attachment>
+	
+	public ArrayList<Attachment> selectAttachmentList(Connection conn, int boardNo){
+		//select -> ResultSet(여러행) -> ArrayList<Attachment>
 		
 		ArrayList<Attachment> list = new ArrayList<>();
 		
@@ -455,6 +456,60 @@ public class BoardDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+	}
+	
+	public int insertReply(Connection conn, Reply r) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertReply");
+		System.out.println(r);
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, r.getReplyContent());
+			pstmt.setInt(2, r.getRefBoardNo());
+			pstmt.setInt(3, Integer.parseInt(r.getReplyWriter()));
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public ArrayList<Reply> selectReplyList(Connection conn, int boardNo){
+		ArrayList<Reply> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReplyList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				list.add(new Reply(
+							rset.getInt("reply_no"),
+							rset.getString("reply_content"),
+							rset.getString("user_id"),
+							rset.getString("create_date")
+						));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(pstmt);
@@ -462,4 +517,10 @@ public class BoardDao {
 		
 		return list;
 	}
+	
+	
+	
+	
+	
+	
 }

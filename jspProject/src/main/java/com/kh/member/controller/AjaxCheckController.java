@@ -33,11 +33,12 @@ public class AjaxCheckController extends HttpServlet {
 		
 		int count = new MemberService().idCheck(checkId);
 		
-		if (count > 0) {	// 중복아이디 존재
+		if (count > 0) {//중복아이디 존재
 			response.getWriter().print("NNNNN");
-		} else {	// 중복아이디 없음
+		} else {//중복아이디 없음
 			response.getWriter().print("NNNNY");
 		}
+	
 	}
 
 	/**

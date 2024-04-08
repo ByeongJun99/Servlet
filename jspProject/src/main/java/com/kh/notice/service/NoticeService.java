@@ -1,10 +1,10 @@
 package com.kh.notice.service;
 
+import static com.kh.common.JDBCTemplate.getConnection;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import com.kh.member.model.dao.MemberDao;
-import com.kh.member.model.vo.Member;
 import com.kh.notice.model.dao.NoticeDao;
 import com.kh.notice.model.vo.Notice;
 import static com.kh.common.JDBCTemplate.*;
@@ -59,20 +59,22 @@ public class NoticeService {
 		close(conn);
 		return n;
 	}
-
+	
+	//리턴이 뭘로될까? 
 	public int updateNotice(Notice n) {
 		Connection conn = getConnection();
 		int result = new NoticeDao().updateNotice(conn, n);
 		
-		// 트랜잭션처리 필요한 경우
+		//트랜잭션처리 필요한 경우 
 		// insert, update, delete
-		if (result > 0) {
+		if (result > 0) { 
 			commit(conn);
 		} else {
 			rollback(conn);
 		}
 		
 		close(conn);
+		
 		return result;
 	}
 	
@@ -80,13 +82,14 @@ public class NoticeService {
 		Connection conn = getConnection();
 		int result = new NoticeDao().deleteNotice(conn, noticeNo);
 		
-		if (result > 0) {
+		if (result > 0) { 
 			commit(conn);
 		} else {
 			rollback(conn);
 		}
 		
 		close(conn);
+		
 		return result;
 	}
 }

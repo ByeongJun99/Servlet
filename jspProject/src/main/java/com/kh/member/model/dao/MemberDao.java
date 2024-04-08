@@ -187,9 +187,11 @@ public class MemberDao {
 		}
 		
 		return result;
+		
 	}
 	
 	public int deleteMember(Connection conn, String userId, String userPwd) {
+		//delete(update) -> 처리된 행수 -> 트랜잭션
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
@@ -204,19 +206,19 @@ public class MemberDao {
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally { 
+		} finally {
 			close(pstmt);
 		}
 		
 		return result;
 	}
-
-	public int isCheck(Connection conn, String checkId) {
-		// select => ResultSet 한 행 => int
+	
+	public int idCheck(Connection conn, String checkId) {
+		//select => ResultSet 한행 => int
 		int count = 0;
 		
-		PreparedStatement pstmt = null;
 		ResultSet rset = null;
+		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("idCheck");
 		
 		try {
@@ -224,7 +226,7 @@ public class MemberDao {
 			pstmt.setString(1, checkId);
 			rset = pstmt.executeQuery();
 			
-			if(rset.next()) {
+			if (rset.next()) {
 				count = rset.getInt("count");
 			}
 		} catch (SQLException e) {
@@ -235,5 +237,6 @@ public class MemberDao {
 		}
 		
 		return count;
+		
 	}
 }

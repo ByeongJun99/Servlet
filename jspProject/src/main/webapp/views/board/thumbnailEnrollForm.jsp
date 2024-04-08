@@ -36,7 +36,7 @@
         <h2 align="center">사진게시판 작성하기</h2>
         <br>
 
-        <form action="<%=contextPath%>/insert.th" id="enroll-form" method="POST" enctype="multipart/form-data">
+        <form action="<%=contextPath %>/insert.th" id="enroll-form" method="POST" enctype="multipart/form-data">
         	<input type="hidden" name="userNo" value="<%=loginUser.getUserNo()%>">
             <table align="center">
                 <tr>
@@ -65,7 +65,7 @@
                 </tr>
             </table>
 
-            <div style="display: none">
+            <div style="display:none">
                 <input type="file" name="file1" id="file1" required onchange="loadImg(this, 1)">
                 <input type="file" name="file2" id="file2" onchange="loadImg(this, 2)">
                 <input type="file" name="file3" id="file3" onchange="loadImg(this, 3)">

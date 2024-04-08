@@ -30,15 +30,16 @@ public class NoticeUpdateFormController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 전달받은 데이터 추출
+		//전달받은 데이터 추출
 		int noticeNo = Integer.parseInt(request.getParameter("num"));
 		
-		// 데이터베이스로부터 원하는 정보 가져오기
+		//데이터베이스로부터 원하는 정보 가져오기
 		Notice n = new NoticeService().selectNotice(noticeNo);
 		
-		// 페이지 리턴
+		//페이지리턴
 		request.setAttribute("notice", n);
-		request.getRequestDispatcher("views/notice/noticeUpdateForm.jsp").forward(request, response);;
+		request.getRequestDispatcher("views/notice/noticeUpdateForm.jsp").forward(request, response);
+	
 	}
 
 	/**

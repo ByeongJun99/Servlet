@@ -38,15 +38,17 @@ public class ThumbnailDetailController extends HttpServlet {
 		
 		if(b != null) {
 			ArrayList<Attachment> list = new BoardService().selectAttachmentList(boardNo);
-			
+		
 			request.setAttribute("b", b);
 			request.setAttribute("list", list);
 			
 			request.getRequestDispatcher("views/board/thumbnailDetailView.jsp").forward(request, response);
 		} else {
 			request.setAttribute("errorMsg", "사진 게시글 조회 실패");
-			request.getRequestDispatcher("views/common/errorPage.jsp");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
+	
+	
 	}
 
 	/**
