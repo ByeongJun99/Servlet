@@ -68,6 +68,10 @@ public class MemberDao {
 		return m;
 	}
 	
+//	public Member loginMember(SqlSession sqlSession, Member m) {	// mybatis쓰면 이 코드로 종결
+//		sqlSession.selectOne("selectMember", m);
+//	}
+	
 	public int insertMember(Connection conn, Member m) {
 		// insert문 => 처리된 행 수 => 트랜잭션처리
 		
