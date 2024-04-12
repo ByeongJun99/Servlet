@@ -32,7 +32,6 @@ public class ThumbnailListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//thumbnailList 전부 가져와 넘겨줘야한다
-	
 		ArrayList<Board> list = new BoardService().selectThumbnailList();
 		
 		request.setAttribute("list", list);
